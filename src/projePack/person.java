@@ -2,28 +2,27 @@ package projePack;
 
 import java.util.ArrayList;
 
-public class person extends main {
+public class person {
     relation parents;
     String name;
     String surname;
     String birthday;
-    String gender;
-    ArrayList <relation> relation = new ArrayList<relation>();
+    boolean male;
+    ArrayList<relation> relation = new ArrayList<relation>();
 
-    public person(relation parents, String name, String surname, String birthday, String gender, ArrayList<relation> relation) {
+    public person(projePack.relation parents, String name, String surname, String birthday, boolean male) {
         this.parents = parents;
         this.name = name;
         this.surname = surname;
         this.birthday = birthday;
-        this.gender = gender;
-        this.relation = relation;
+        this.male = male;
     }
 
-    public relation getParents() {
+    public projePack.relation getParents() {
         return parents;
     }
 
-    public void setParents(relation parents) {
+    public void setParents(projePack.relation parents) {
         this.parents = parents;
     }
 
@@ -51,20 +50,12 @@ public class person extends main {
         this.birthday = birthday;
     }
 
-    public String getGender() {
-        return gender;
+    public boolean isMale() {
+        return male;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setMale(boolean male) {
+        this.male = male;
     }
-
-    public ArrayList<relation> getRelation() {
-        return relation;
-    }
-
-    public void setRelation(ArrayList<relation> relation) {
-        this.relation = relation;
-    }
-
 }
+

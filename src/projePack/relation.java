@@ -7,10 +7,10 @@ public class relation {
     person spouse2;
 
     ArrayList<person> children = new ArrayList<person>();
-    ArrayList<person> mother = new ArrayList<person>();
+    //ArrayList<person> mother = new ArrayList<person>();
     ArrayList<person> father = new ArrayList<person>();
     ArrayList<person> partner = new ArrayList<person>();
-    ArrayList<person> brother = new ArrayList<person>();
+    ArrayList<person> brother = new ArrayList<person>(); //(brother / sister)
 
 
     public relation(person spouse1, person spouse2) {
