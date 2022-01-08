@@ -1,9 +1,10 @@
 package projePack;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class person {
+ class person {
     static int personCounter = 0;
     int id;
     relation parents;
@@ -11,8 +12,11 @@ public class person {
     String surname;
     String birthday;
     String gender;
-    ArrayList<relation> relation = new ArrayList<relation>();
+
     ArrayList<person> persons = new ArrayList<person>();
+
+
+
     Scanner scanner = new Scanner(System.in);
 
 
@@ -27,7 +31,6 @@ public class person {
     public void personAdder(){
         System.out.println("======= AGACTA EKLEME YAPILACAK KISI BULUNMAMAKTA LUTFEN ONCE KENDINIZI EKLEYIN=====");
 
-        person tempPerson = new person();
         relation tempRelation = new relation();
 
         System.out.println("Ad: ");
@@ -43,20 +46,27 @@ public class person {
 
     }
 
-    public void showPersons(){
-        for (int i =0; i<persons.size(); i++){
-            viewPersonInfo(i);
+    public void showPersons(person person) {
+        for (int i =0;i<person.persons.size();i++) {
+            person.viewPersonInfo();
         }
     }
 
+     public void childrenAdder(relation relation,int relationID, int personID){
+         relation.relations.get(relationID).children.add(persons.get(personID));
+         persons.get(personID).parents=relation.relations.get(relationID);
+         //Buraya baba anne belirtilcek
+     }
 
 
-    public void viewPersonInfo(int index){
-        System.out.println("person name: "+persons.get(index).name);
-        System.out.println("person surname: "+persons.get(index).surname);
-        System.out.println("person birthday: "+persons.get(index).birthday);
-        System.out.println("person gender: "+persons.get(index).gender);
-        System.out.println("relation: "+persons.get(index).relation);
+
+
+    public void viewPersonInfo(){
+        System.out.println("person name: "+ name);
+        System.out.println("person surname: "+ surname);
+        System.out.println("person birthday: "+ birthday);
+        System.out.println("person gender: "+ gender);
+        System.out.println("Anne ismi: "+ parents.spouse1.name + " and father name: " + parents.spouse2.name);
         System.out.println();
     }
 
@@ -110,4 +120,3 @@ public class person {
         this.gender = gender;
     }
 }
-
