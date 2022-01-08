@@ -16,18 +16,22 @@ public class Main {
         // burada root kontrolu yapmak gerekiyor.
         person.personAdder();//1. kisi eklendi parents bos relation bos
         person.personAdder();//2.kisi yaratildi
-        System.out.println(person.persons.size());
         relation.relationAdder(person.persons.get(0),person.persons.get(1));
         person.personAdder();
-        System.out.println(person.persons.size());
-        System.out.println(relation.relations.size());
-        System.out.println(relation.relations.get(0));
 
         person.childrenAdder(relation,0,2);
+
+        person.personAdder();//dede (baba)
+        person.personAdder();//babaanne
+        relation.relationAdder(person.persons.get(3),person.persons.get(4));
+        person.childrenAdder(relation,1,0);
+
+
+        person.personAdder();//dede
+        person.personAdder();//anneanne
+        relation.relationAdder(person.persons.get(5),person.persons.get(6));
+        person.childrenAdder(relation,2,1);
         person.persons.get(2).viewPersonInfo();
-
-
-
 
 
         //System.out.println(relation.relations.get(0).spouse1.name);

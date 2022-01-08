@@ -11,7 +11,7 @@ import java.util.Scanner;
     String name;
     String surname;
     String birthday;
-    String gender;
+    Boolean gender;
 
     ArrayList<person> persons = new ArrayList<person>();
 
@@ -25,7 +25,7 @@ import java.util.Scanner;
         name = "bos";
         surname = "bos";
         birthday = "bos";
-        gender = "bos";
+        gender = null;
     }
 
     public void personAdder(){
@@ -40,7 +40,17 @@ import java.util.Scanner;
         System.out.println("Doğum tarihi (GG.AA.YYYY): ");
         String tempBirthday = scanner.nextLine();
         System.out.println("Cinsiyet (E/K): ");
-        String tempGender = scanner.nextLine();
+        String inputForGender = scanner.nextLine();
+        Boolean tempGender;
+        if (inputForGender.equals("E")){
+            tempGender = true;
+        }
+        else if (inputForGender.equals("K")){
+            tempGender = false;
+        }
+        else{
+            tempGender = null;
+        }
 
         persons.add(new person(tempRelation,tempName,tempSurname,tempBirthday,tempGender));
 
@@ -56,6 +66,29 @@ import java.util.Scanner;
          relation.relations.get(relationID).children.add(persons.get(personID));
          persons.get(personID).parents=relation.relations.get(relationID);
          //Buraya baba anne belirtilcek
+
+     }
+
+     public void allRelations(){//TODO BURADAN DEVAM EDILECEK!!!!!!!
+         if(parents.relations.isEmpty()){
+             return;
+         }
+         if (parents.spouse1 == null){
+             return;
+         }
+         if (parents.spouse1.gender) System.out.println("Baba ismi: "+ parents.spouse1.name+"\nAnne name: " + parents.spouse2.name);
+         else {
+             System.out.println("Baba ismi: "+ parents.spouse2.name+"\nAnne name: " + parents.spouse1.name);
+         }
+         if (parents.spouse1.parents.spouse1.gender) System.out.println("Dede ismi: "+ parents.spouse1.parents.spouse1.name+"\nBabaanne name: " + parents.spouse1.parents.spouse2.name);
+         else {
+             System.out.println("Dede ismi: "+ parents.spouse1.parents.spouse2.name+"\nBabaanne name: " + parents.spouse1.parents.spouse1.name);
+         }
+         if (parents.spouse2.parents.spouse1.gender) System.out.println("Dede ismi: "+ parents.spouse2.parents.spouse1.name+"\nAnneanne name: " + parents.spouse2.parents.spouse2.name);
+         else {
+             System.out.println("Dede ismi: "+ parents.spouse2.parents.spouse2.name+"\nAnneanne name: " + parents.spouse2.parents.spouse1.name);
+         }
+
      }
 
 
@@ -66,11 +99,11 @@ import java.util.Scanner;
         System.out.println("person surname: "+ surname);
         System.out.println("person birthday: "+ birthday);
         System.out.println("person gender: "+ gender);
-        System.out.println("Anne ismi: "+ parents.spouse1.name + " and father name: " + parents.spouse2.name);
+        allRelations();
         System.out.println();
     }
 
-    public person(projePack.relation parents, String name, String surname, String birthday, String gender) {
+    public person(projePack.relation parents, String name, String surname, String birthday, Boolean gender) {
         this.parents = parents;
         this.name = name;
         this.surname = surname;
@@ -112,11 +145,11 @@ import java.util.Scanner;
         this.birthday = birthday;
     }
 
-    public String isGender() {
+    public Boolean isGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Boolean gender) {
         this.gender = gender;
     }
 }
