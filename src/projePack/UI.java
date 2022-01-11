@@ -186,6 +186,13 @@ public class UI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == buttonEkle && (comboBoxAkraba.getSelectedIndex() == 0)) {
+            Boolean tempGender;
+            if(comboBoxCinsiyet.getSelectedIndex() == 0){
+                tempGender = false;
+            }
+            else {
+                tempGender = true;
+            }
             DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(
                     textFieldAd.getText() + " " + textFieldSoyad.getText());
             // root = new DefaultMutableTreeNode(tempNode);
@@ -195,10 +202,10 @@ public class UI implements ActionListener {
             root = (DefaultMutableTreeNode) model.getRoot();
             root.setUserObject(textFieldAd.getText() + " " + textFieldSoyad.getText() + "(Kendisi)");
             model.nodeChanged(root);
-            person1.setName(textFieldAd.getText());
-            person1.setSurname(textFieldSoyad.getText());
-            person1.setBirthday(textFieldDogumTarihi.getText());
-            person1.personAdder();
+//            person1.setName(textFieldAd.getText());
+//            person1.setSurname(textFieldSoyad.getText());
+//            person1.setBirthday(textFieldDogumTarihi.getText());
+            person1.personAdder(textFieldAd.getText(),textFieldSoyad.getText(),textFieldDogumTarihi.getText(),tempGender);
 
 
             SwingUtilities.updateComponentTreeUI(firstPanel); // reload the firstPanel after every person add
@@ -283,6 +290,7 @@ public class UI implements ActionListener {
             firstControlPanel.removeAll();
             SwingUtilities.updateComponentTreeUI(firstControlPanel);
         }
+
 
     }
 }

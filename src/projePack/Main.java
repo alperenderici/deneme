@@ -11,12 +11,12 @@ public class Main {
         relation relation = new relation();
 
         System.out.println("Kişi ekleme hoş geldiniz.");
-        person.personAdder();//ilk kisi 0
-
-        person.personAdder();//baba 1
-        person.personAdder();//anne 2
-
-        person.personAdder();//kardes 3
+//        person.personAdder();//ilk kisi 0
+//
+//        person.personAdder();//baba 1
+//        person.personAdder();//anne 2
+//
+//        person.personAdder();//kardes 3
 
         relation.relationAdder(person.persons.get(1),person.persons.get(2));//anne baba rel id 0
         person.childrenAdder(relation,0,0);//kendim cocuk ekledim

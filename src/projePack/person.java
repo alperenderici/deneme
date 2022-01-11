@@ -18,7 +18,7 @@ public class person {
     relation parents;
     String name;
     String surname;
-    String birthday;
+    Date birthday;
     Boolean gender;
 
 
@@ -30,39 +30,42 @@ public class person {
     public person(){
         name = "bos";
         surname = "bos";
-        //birthday = new Date(0,0,0,0,0,0);
-        birthday = "bos";
+        birthday = new Date(0,0,0,0,0,0);
+        //birthday = "bos";
         gender = null;
     }
 
-    public void personAdder(){
+    public person(String name, String surname, String birthday, Boolean gender) {
+    }
+
+    public void personAdder(String name, String surname, String birthday,Boolean gender){
         //TODO agacta ekleme yapilacak kisi bulunamamakta kontrolu (ilk kisi icin)
-        System.out.println("Kisi bilgilerini giriniz");
-        relation tempRelation = new relation();
-        System.out.println("Ad: ");
-        String tempName =
-        System.out.println("Soyad: ");
-        String tempSurname = ui.textFieldSoyad.getText();
-        System.out.println("Doğum tarihi (dd/MM/yyyy): ");
-        String tempDate = ui.textFieldDogumTarihi.getText();
+//        System.out.println("Kisi bilgilerini giriniz");
+//        relation tempRelation = new relation();
+//        System.out.println("Ad: ");
+//        String tempName =
+//        System.out.println("Soyad: ");
+//        String tempSurname = ui.textFieldSoyad.getText();
+//        System.out.println("Doğum tarihi (dd/MM/yyyy): ");
+//        String tempDate = ui.textFieldDogumTarihi.getText();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date2=null;
         try {
             //Parsing the String
-            date2 = dateFormat.parse(tempDate);
+            date2 = dateFormat.parse(birthday);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
-        System.out.println("Cinsiyet(E/K): ");
-        Boolean inputForGender = true;
-        if(ui.comboBoxCinsiyet.getSelectedIndex() == 0){
-            inputForGender = true;
-        }
-        else if(ui.comboBoxCinsiyet.getSelectedIndex() == 1){
-            inputForGender = false;
-        }
+//
+//
+//        System.out.println("Cinsiyet(E/K): ");
+//        Boolean inputForGender = true;
+//        if(ui.comboBoxCinsiyet.getSelectedIndex() == 0){
+//            inputForGender = true;
+//        }
+//        else if(ui.comboBoxCinsiyet.getSelectedIndex() == 1){
+//            inputForGender = false;
+//        }
 //        if (inputForGender.equals("E")||inputForGender.equals("e")){
 //            tempGender = true;
 //        }
@@ -72,7 +75,7 @@ public class person {
 //            tempGender = null;
 //        }
 
-        persons.add(new person(tempRelation,tempName,tempSurname,date2,inputForGender));
+        persons.add(new person(name,surname,birthday,gender));
         viewPersonInfo();
     }
 
@@ -81,23 +84,23 @@ public class person {
         persons.get(personID).parents = relation.relations.get(relationID);
     }
 
-    public void brotherAdder(relation relation, int relationID, int relationdakiSpouseID){//spouse idye bastiriyo bunu bir daha islememiz gerekebilir.
-        try {
-            relation.brother.add(relation.relations.get(relationID).spouse1);
-            relation.brother.add(relation.relations.get(relationID).spouse2);
-            if (relation.relations.get(relationID).spouse1.birthday.after(relation.relations.get(relationID).spouse2.birthday)){
-                if (relation.relations.get(relationID).spouse2.gender){
-                    System.out.println("Abi adı: "+relation.brother.get(relationdakiSpouseID).name);
-                }else {
-                    System.out.println("Abla adı: "+relation.brother.get(relationdakiSpouseID).name);
-                }
-            }else {
-                System.out.println("Kardeş adı: "+relation.brother.get(relationdakiSpouseID).name);
-            }
-        }catch (NullPointerException e){
-            e.getMessage();
-        }
-    }
+//    public void brotherAdder(relation relation, int relationID, int relationdakiSpouseID){//spouse idye bastiriyo bunu bir daha islememiz gerekebilir.
+//        try {
+//            relation.brother.add(relation.relations.get(relationID).spouse1);
+//            relation.brother.add(relation.relations.get(relationID).spouse2);
+//            if (relation.relations.get(relationID).spouse1.birthday.after(relation.relations.get(relationID).spouse2.birthday)){
+//                if (relation.relations.get(relationID).spouse2.gender){
+//                    System.out.println("Abi adı: "+relation.brother.get(relationdakiSpouseID).name);
+//                }else {
+//                    System.out.println("Abla adı: "+relation.brother.get(relationdakiSpouseID).name);
+//                }
+//            }else {
+//                System.out.println("Kardeş adı: "+relation.brother.get(relationdakiSpouseID).name);
+//            }
+//        }catch (NullPointerException e){
+//            e.getMessage();
+//        }
+//    }
 
     public void motherFather(){
         try {
