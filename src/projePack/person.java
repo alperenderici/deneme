@@ -18,7 +18,7 @@ public class person {
     relation parents;
     String name;
     String surname;
-    Date birthday;
+    String birthday;
     Boolean gender;
 
 
@@ -27,12 +27,11 @@ public class person {
     Scanner scanner = new Scanner(System.in);
     Scanner scanner2 = new Scanner(System.in);
 
-    UI ui = new UI();
-
     public person(){
         name = "bos";
         surname = "bos";
-        birthday = new Date(0,0,0,0,0,0);
+        //birthday = new Date(0,0,0,0,0,0);
+        birthday = "bos";
         gender = null;
     }
 
@@ -41,7 +40,7 @@ public class person {
         System.out.println("Kisi bilgilerini giriniz");
         relation tempRelation = new relation();
         System.out.println("Ad: ");
-        String tempName = ui.textFieldAd.getText();
+        String tempName =
         System.out.println("Soyad: ");
         String tempSurname = ui.textFieldSoyad.getText();
         System.out.println("Doğum tarihi (dd/MM/yyyy): ");
@@ -74,6 +73,7 @@ public class person {
 //        }
 
         persons.add(new person(tempRelation,tempName,tempSurname,date2,inputForGender));
+        viewPersonInfo();
     }
 
     public void childrenAdder(relation relation, int relationID, int personID){

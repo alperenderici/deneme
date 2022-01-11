@@ -46,7 +46,7 @@ public class UI implements ActionListener {
     DefaultMutableTreeNode children;
     DefaultMutableTreeNode broSis;
 
-//    Person person = new Person();
+    person person1 = new person();
 //    Relation relation = new Relation();
 
 
@@ -195,13 +195,17 @@ public class UI implements ActionListener {
             root = (DefaultMutableTreeNode) model.getRoot();
             root.setUserObject(textFieldAd.getText() + " " + textFieldSoyad.getText() + "(Kendisi)");
             model.nodeChanged(root);
+            person1.setName(textFieldAd.getText());
+            person1.setSurname(textFieldSoyad.getText());
+            person1.setBirthday(textFieldDogumTarihi.getText());
+            person1.personAdder();
 
 
             SwingUtilities.updateComponentTreeUI(firstPanel); // reload the firstPanel after every person add
 
-            System.out.println(textFieldAd.getText());
+            /*System.out.println(textFieldAd.getText());
             System.out.println(textFieldSoyad.getText());
-            System.out.println(textFieldDogumTarihi.getText());
+            System.out.println(textFieldDogumTarihi.getText());*/
 
         }
 
