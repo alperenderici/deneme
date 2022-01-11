@@ -1,41 +1,34 @@
 package projePack;
-import java.util.ArrayList;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.*;
 
 public class Main {
-
     public static void main(String[] args) {
         person person = new person();
         relation relation = new relation();
-        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Kişi ekleme hoş geldiniz.");
+        person.personAdder();//ilk kisi 0
 
+        person.personAdder();//baba 1
+        person.personAdder();//anne 2
 
+        person.personAdder();//kardes 3
 
-        System.out.println("Kisi ekleme ekranina hos geldiniz.");
-        // burada root kontrolu yapmak gerekiyor.
-        person.personAdder();//1. kisi eklendi parents bos relation bos
-        person.personAdder();//2.kisi yaratildi
-        relation.relationAdder(person.persons.get(0),person.persons.get(1));
-        person.personAdder();
+        relation.relationAdder(person.persons.get(1),person.persons.get(2));//anne baba rel id 0
+        person.childrenAdder(relation,0,0);//kendim cocuk ekledim
+        person.childrenAdder(relation,0,3);//kardes cocuk ekledim
 
-        person.childrenAdder(relation,0,2);
+        relation.relationAdder(person.persons.get(0),person.persons.get(3));//rel id 1
 
-        person.personAdder();//dede (baba)
-        person.personAdder();//babaanne
-        relation.relationAdder(person.persons.get(3),person.persons.get(4));
-        person.childrenAdder(relation,1,0);
-
-
-        person.personAdder();//dede
-        person.personAdder();//anneanne
-        relation.relationAdder(person.persons.get(5),person.persons.get(6));
-        person.childrenAdder(relation,2,1);
-        person.persons.get(2).viewPersonInfo();
-
-
-        //System.out.println(relation.relations.get(0).spouse1.name);
-
+        person.persons.get(0).viewPersonInfo();//benim infoyu ver
+        person.brotherAdder(relation,1,1);//benim kardesim
+        System.out.println();
+        person.persons.get(3).viewPersonInfo();//kardes infoyu ver
+        person.brotherAdder(relation,1,0);// kardesim icin beni bastir
 
 
     }
