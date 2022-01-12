@@ -35,48 +35,52 @@ public class person {
         gender = null;
     }
 
-    public person(String name, String surname, String birthday, Boolean gender) {
-    }
+//    public person(String name, String surname, String birthday, Boolean gender) {
+//    }
 
-    public void personAdder(String name, String surname, String birthday,Boolean gender){
+    public void personAdder(){
         //TODO agacta ekleme yapilacak kisi bulunamamakta kontrolu (ilk kisi icin)
-//        System.out.println("Kisi bilgilerini giriniz");
-//        relation tempRelation = new relation();
-//        System.out.println("Ad: ");
-//        String tempName =
-//        System.out.println("Soyad: ");
-//        String tempSurname = ui.textFieldSoyad.getText();
-//        System.out.println("Doğum tarihi (dd/MM/yyyy): ");
-//        String tempDate = ui.textFieldDogumTarihi.getText();
+        System.out.println("Kisi bilgilerini giriniz");
+        relation tempRelation = new relation();
+        System.out.println("Ad: ");
+        String tempName = scanner.nextLine();
+        System.out.println("Soyad: ");
+        String tempSurname = scanner.nextLine();
+        //String tempSurname = ui.textFieldSoyad.getText();
+        System.out.println("Doğum tarihi (dd/MM/yyyy): ");
+        String tempDate = scanner2.nextLine();
+        //String tempDate = ui.textFieldDogumTarihi.getText();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date2=null;
         try {
             //Parsing the String
-            date2 = dateFormat.parse(birthday);
+            date2 = dateFormat.parse(tempDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 //
 //
-//        System.out.println("Cinsiyet(E/K): ");
-//        Boolean inputForGender = true;
+        System.out.println("Cinsiyet(E/K): ");
+        String inputForGender = scanner.nextLine();
+        Boolean tempGender;
+        if (inputForGender.equals("E")||inputForGender.equals("e")){
+            tempGender = true;
+        }
+        else if (inputForGender.equals("K")||inputForGender.equals("k")){
+            tempGender = false;
+        }else {
+            tempGender = null;
+        }
 //        if(ui.comboBoxCinsiyet.getSelectedIndex() == 0){
 //            inputForGender = true;
 //        }
 //        else if(ui.comboBoxCinsiyet.getSelectedIndex() == 1){
 //            inputForGender = false;
 //        }
-//        if (inputForGender.equals("E")||inputForGender.equals("e")){
-//            tempGender = true;
-//        }
-//        else if (inputForGender.equals("K")||inputForGender.equals("k")){
-//            tempGender = false;
-//        }else {
-//            tempGender = null;
-//        }
 
-        persons.add(new person(name,surname,birthday,gender));
-        viewPersonInfo();
+
+        persons.add(new person(tempRelation,tempName,tempSurname,date2,tempGender));
+
     }
 
     public void childrenAdder(relation relation, int relationID, int personID){
@@ -84,23 +88,23 @@ public class person {
         persons.get(personID).parents = relation.relations.get(relationID);
     }
 
-//    public void brotherAdder(relation relation, int relationID, int relationdakiSpouseID){//spouse idye bastiriyo bunu bir daha islememiz gerekebilir.
-//        try {
-//            relation.brother.add(relation.relations.get(relationID).spouse1);
-//            relation.brother.add(relation.relations.get(relationID).spouse2);
-//            if (relation.relations.get(relationID).spouse1.birthday.after(relation.relations.get(relationID).spouse2.birthday)){
-//                if (relation.relations.get(relationID).spouse2.gender){
-//                    System.out.println("Abi adı: "+relation.brother.get(relationdakiSpouseID).name);
-//                }else {
-//                    System.out.println("Abla adı: "+relation.brother.get(relationdakiSpouseID).name);
-//                }
-//            }else {
-//                System.out.println("Kardeş adı: "+relation.brother.get(relationdakiSpouseID).name);
-//            }
-//        }catch (NullPointerException e){
-//            e.getMessage();
-//        }
-//    }
+    public void brotherAdder(relation relation, int relationID, int relationdakiSpouseID){//spouse idye bastiriyo bunu bir daha islememiz gerekebilir.
+        try {
+            relation.brother.add(relation.relations.get(relationID).spouse1);
+            relation.brother.add(relation.relations.get(relationID).spouse2);
+            if (relation.relations.get(relationID).spouse1.birthday.after(relation.relations.get(relationID).spouse2.birthday)){
+                if (relation.relations.get(relationID).spouse2.gender){
+                    System.out.println("Abi adı: "+relation.brother.get(relationdakiSpouseID).name);
+                }else {
+                    System.out.println("Abla adı: "+relation.brother.get(relationdakiSpouseID).name);
+                }
+            }else {
+                System.out.println("Kardeş adı: "+relation.brother.get(relationdakiSpouseID).name);
+            }
+        }catch (NullPointerException e){
+            e.getMessage();
+        }
+    }
 
     public void motherFather(){
         try {
@@ -156,6 +160,16 @@ public class person {
             e.getMessage();
         }
     }
+//    public void yegen(relation relation, int relationID,int relChildrenID, int personID){
+//        try {
+//            if (!relation.relations.get(relationID).brother.isEmpty() && !relation.relations.get(relChildrenID).children.isEmpty()){
+//                System.out.println("Yeğen: "+relation.relations.get(relChildrenID).children.get(personID).name);
+//            }
+//        }catch (NullPointerException e){
+//            e.getMessage();
+//        }
+//    }
+//
 
     public void es(relation relation, int relationID){
         try {
@@ -215,6 +229,53 @@ public class person {
             }
         }catch (NullPointerException e){
             e.getMessage();
+        }
+    }
+
+    public void updateName(person person){
+        System.out.println("Güncel Ad: ");
+        String tempName = scanner.nextLine();
+        person.name = tempName;
+        System.out.println("Güncel Soyad: ");
+        String tempSurname = scanner.nextLine();
+        person.name = tempSurname;
+    }
+    public void updateBirthday(person person){
+        System.out.println("Güncel Doğum tarihi (dd/MM/yyyy): ");
+        String tempDate = scanner2.nextLine();
+        //String tempDate = ui.textFieldDogumTarihi.getText();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date2=null;
+        try {
+            //Parsing the String
+            date2 = dateFormat.parse(tempDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        person.birthday = date2;
+    }
+
+    public void updateGender(person person){
+        System.out.println("Güncel Cinsiyet");
+        String inputForGender= scanner.nextLine();
+        Boolean tempGender;
+        if (inputForGender.equals("E")||inputForGender.equals("e")){
+            tempGender = true;
+        }
+        else if (inputForGender.equals("K")||inputForGender.equals("k")){
+            tempGender = false;
+        }else {
+            tempGender = null;
+        }
+        person.gender = tempGender;
+    }
+
+    public void deletePerson(int personID){
+        System.out.println("Delete person");
+        for (int i= 0; i < persons.size(); i++){
+            if (personID == persons.get(i).id){
+                persons.remove(i);
+            }
         }
     }
 

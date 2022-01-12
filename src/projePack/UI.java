@@ -205,7 +205,7 @@ public class UI implements ActionListener {
 //            person1.setName(textFieldAd.getText());
 //            person1.setSurname(textFieldSoyad.getText());
 //            person1.setBirthday(textFieldDogumTarihi.getText());
-            person1.personAdder(textFieldAd.getText(),textFieldSoyad.getText(),textFieldDogumTarihi.getText(),tempGender);
+//            person1.personAdder(textFieldAd.getText(),textFieldSoyad.getText(),textFieldDogumTarihi.getText(),tempGender);
 
 
             SwingUtilities.updateComponentTreeUI(firstPanel); // reload the firstPanel after every person add

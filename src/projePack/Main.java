@@ -1,4 +1,5 @@
 package projePack;
+import projePack.UI;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,24 +12,16 @@ public class Main {
         relation relation = new relation();
 
         System.out.println("Kişi ekleme hoş geldiniz.");
-//        person.personAdder();//ilk kisi 0
-//
-//        person.personAdder();//baba 1
-//        person.personAdder();//anne 2
-//
-//        person.personAdder();//kardes 3
+        person.personAdder();//ilk kisi eklendi id=0
 
-        relation.relationAdder(person.persons.get(1),person.persons.get(2));//anne baba rel id 0
-        person.childrenAdder(relation,0,0);//kendim cocuk ekledim
-        person.childrenAdder(relation,0,3);//kardes cocuk ekledim
+        person.personAdder();//babam id=1
+        person.personAdder();//annem id=2
+        relation.relationAdder(person.persons.get(0),person.persons.get(1)); //relid = 0
+        person.childrenAdder(relation,0,0);
 
-        relation.relationAdder(person.persons.get(0),person.persons.get(3));//rel id 1
+        person.personAdder();//amcam id=3
+        person.childrenAdder(relation,1,5);
 
-        person.persons.get(0).viewPersonInfo();//benim infoyu ver
-        person.brotherAdder(relation,1,1);//benim kardesim
-        System.out.println();
-        person.persons.get(3).viewPersonInfo();//kardes infoyu ver
-        person.brotherAdder(relation,1,0);// kardesim icin beni bastir
 
 
     }
